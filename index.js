@@ -2,6 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require('path');
 const line = require("@line/bot-sdk");
 const app = express();
 
@@ -34,8 +35,8 @@ app.post("/webhook", (req, res) => {
     });
 });
 
-app.get("/", (req, res) => {
-  res.sendFile('./public/index.html');
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, './public', 'index.html'));
 });
 
 // Spin up the server
